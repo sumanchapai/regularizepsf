@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Correcting using SimplePSF" href="simple_psf.html" />
-    <link rel="prev" title="Welcome to the PSFPy documentation" href="intro.html" />
+    <link rel="next" title="Correct using ArrayCorrector" href="array.html" />
+    <link rel="prev" title="Welcome to PSFPy" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -104,7 +104,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to the PSFPy documentation
+                    Welcome to PSFPy
                 </a>
             </li>
         </ul>
@@ -115,21 +115,21 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="simple_psf.html">
-   Correcting using
+  <a class="reference internal" href="array.html">
+   Correct using
    <code class="docutils literal notranslate">
     <span class="pre">
-     SimplePSF
+     ArrayCorrector
     </span>
    </code>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="varied_psf.html">
-   Correcting using
+  <a class="reference internal" href="functional.html">
+   Correct using
    <code class="docutils literal notranslate">
     <span class="pre">
-     VariedPSF
+     FunctionalCorrector
     </span>
    </code>
   </a>
@@ -137,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="theory.html">
    Mathematical Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cite.html">
+   How to cite
   </a>
  </li>
 </ul>
@@ -322,13 +327,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-a-simple-psf-model">
-   Fitting a simple PSF model
+  <a class="reference internal nav-link" href="#extracting-a-simple-psf-model">
+   Extracting a simple PSF model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correcting-an-image-with-a-simple-psf-model">
-   Correcting an image with a simple PSF model
+  <a class="reference internal nav-link" href="#correcting-an-image-with-a-psf-arraycorrector">
+   Correcting an image with a PSF ArrayCorrector
   </a>
  </li>
 </ul>
@@ -356,13 +361,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-a-simple-psf-model">
-   Fitting a simple PSF model
+  <a class="reference internal nav-link" href="#extracting-a-simple-psf-model">
+   Extracting a simple PSF model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correcting-an-image-with-a-simple-psf-model">
-   Correcting an image with a simple PSF model
+  <a class="reference internal nav-link" href="#correcting-an-image-with-a-psf-arraycorrector">
+   Correcting an image with a PSF ArrayCorrector
   </a>
  </li>
 </ul>
@@ -379,12 +384,16 @@ title="Print to PDF"
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h1>
 <section id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">#</a></h2>
+<p>Installation should be as simple as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">psfpy</span></code>.</p>
 </section>
-<section id="fitting-a-simple-psf-model">
-<h2>Fitting a simple PSF model<a class="headerlink" href="#fitting-a-simple-psf-model" title="Permalink to this headline">#</a></h2>
+<section id="extracting-a-simple-psf-model">
+<h2>Extracting a simple PSF model<a class="headerlink" href="#extracting-a-simple-psf-model" title="Permalink to this headline">#</a></h2>
+<p>Before you can correct an image, you need a PSF model for it.
+You can either define a functional model or an array model. A functional
+model is</p>
 </section>
-<section id="correcting-an-image-with-a-simple-psf-model">
-<h2>Correcting an image with a simple PSF model<a class="headerlink" href="#correcting-an-image-with-a-simple-psf-model" title="Permalink to this headline">#</a></h2>
+<section id="correcting-an-image-with-a-psf-arraycorrector">
+<h2>Correcting an image with a PSF ArrayCorrector<a class="headerlink" href="#correcting-an-image-with-a-psf-arraycorrector" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
@@ -419,13 +428,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to the PSFPy documentation</p>
+            <p class="prev-next-title">Welcome to PSFPy</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="simple_psf.html" title="next page">
+    <a class='right-next' id="next-link" href="array.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correcting using <code class="docutils literal notranslate"><span class="pre">SimplePSF</span></code></p>
+        <p class="prev-next-title">Correct using <code class="docutils literal notranslate"><span class="pre">ArrayCorrector</span></code></p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -436,7 +445,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By J. Marcus Hughes<br/>
+    By PUNCH Science Operations Center<br/>
   
       &copy; Copyright 2022.<br/>
 </p>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Correcting using SimplePSF &#8212; PSFPy</title>
+    <title>Correct using FunctionalCorrector &#8212; PSFPy</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Correcting using VariedPSF" href="varied_psf.html" />
-    <link rel="prev" title="Quickstart" href="quickstart.html" />
+    <link rel="next" title="Mathematical Theory" href="theory.html" />
+    <link rel="prev" title="Correct using ArrayCorrector" href="array.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -104,7 +104,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to the PSFPy documentation
+                    Welcome to PSFPy
                 </a>
             </li>
         </ul>
@@ -114,22 +114,22 @@ const thebe_selector_output = ".output, .cell_output"
    Quickstart
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Correcting using
+ <li class="toctree-l1">
+  <a class="reference internal" href="array.html">
+   Correct using
    <code class="docutils literal notranslate">
     <span class="pre">
-     SimplePSF
+     ArrayCorrector
     </span>
    </code>
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="varied_psf.html">
-   Correcting using
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Correct using
    <code class="docutils literal notranslate">
     <span class="pre">
-     VariedPSF
+     FunctionalCorrector
     </span>
    </code>
   </a>
@@ -137,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="theory.html">
    Mathematical Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cite.html">
+   How to cite
   </a>
  </li>
 </ul>
@@ -229,7 +234,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsimple_psf.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffunctional.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -257,7 +262,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/simple_psf.md"
+        <a href="_sources/functional.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -306,7 +311,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Correcting using SimplePSF</h1>
+                <h1>Correct using FunctionalCorrector</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -318,8 +323,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="correcting-using-simplepsf">
-<h1>Correcting using <code class="docutils literal notranslate"><span class="pre">SimplePSF</span></code><a class="headerlink" href="#correcting-using-simplepsf" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="correct-using-functionalcorrector">
+<h1>Correct using <code class="docutils literal notranslate"><span class="pre">FunctionalCorrector</span></code><a class="headerlink" href="#correct-using-functionalcorrector" title="Permalink to this headline">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -349,17 +354,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="quickstart.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="array.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Quickstart</p>
+            <p class="prev-next-title">Correct using <code class="docutils literal notranslate"><span class="pre">ArrayCorrector</span></code></p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="varied_psf.html" title="next page">
+    <a class='right-next' id="next-link" href="theory.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correcting using <code class="docutils literal notranslate"><span class="pre">VariedPSF</span></code></p>
+        <p class="prev-next-title">Mathematical Theory</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -370,7 +375,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By J. Marcus Hughes<br/>
+    By PUNCH Science Operations Center<br/>
   
       &copy; Copyright 2022.<br/>
 </p>
