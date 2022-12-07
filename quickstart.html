@@ -384,16 +384,37 @@ title="Print to PDF"
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h1>
 <section id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">#</a></h2>
-<p>Installation should be as simple as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">psfpy</span></code>.</p>
+<p>Installation should be as simple as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">regularizepsf</span></code>.</p>
 </section>
 <section id="extracting-a-simple-psf-model">
 <h2>Extracting a simple PSF model<a class="headerlink" href="#extracting-a-simple-psf-model" title="Permalink to this headline">#</a></h2>
 <p>Before you can correct an image, you need a PSF model for it.
 You can either define a functional model or an array model. A functional
-model is</p>
+model is defined by an equation whereas an array model uses the data directly as the model.
+For most purposes, we recommend an array model because deriving the correct functional form
+can be tricky.</p>
 </section>
 <section id="correcting-an-image-with-a-psf-arraycorrector">
 <h2>Correcting an image with a PSF ArrayCorrector<a class="headerlink" href="#correcting-an-image-with-a-psf-arraycorrector" title="Permalink to this headline">#</a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">regularizepsf.fitter</span> <span class="kn">import</span> <span class="n">CoordinatePatchCollection</span>
+<span class="n">patch_size</span><span class="p">,</span> <span class="n">psf_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">32</span>
+<span class="n">image_fn</span> <span class="o">=</span> <span class="s2">&quot;path/to/image.fits&quot;</span>
+
+<span class="n">averaged</span> <span class="o">=</span>  <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">find_stars_and_average</span><span class="p">([</span><span class="n">image_fn</span><span class="p">],</span> 
+                                                             <span class="n">psf_size</span><span class="p">,</span> 
+                                                             <span class="n">patch_size</span><span class="p">)</span>
+
+<span class="nd">@simple_psf</span>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">patch_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">patch_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mf">3.25</span> <span class="o">/</span> <span class="mf">2.355</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mf">3.25</span> <span class="o">/</span> <span class="mf">2.355</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">sigma_x</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">sigma_y</span><span class="p">))))</span>
+
+<span class="n">evaluation_dictionary</span> <span class="o">=</span> <span class="p">{(</span><span class="n">identifier</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">identifer</span><span class="o">.</span><span class="n">y</span><span class="p">):</span> <span class="n">patch</span> <span class="k">for</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averaged</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">target_evaluation</span> <span class="o">=</span> <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)))</span>
+<span class="n">array_corrector</span> <span class="o">=</span> <span class="n">ArrayCorrector</span><span class="p">(</span><span class="n">evaluation_dictionary</span><span class="p">,</span> <span class="n">target_evaluation</span><span class="p">)</span>
+
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">array_corrector</span><span class="o">.</span><span class="n">correct_image</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
