@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to PSFPy &#8212; PSFPy</title>
+    <title>Welcome to regularizepsf &#8212; PSFPy</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Welcome to PSFPy
+                    Welcome to regularizepsf
                 </a>
             </li>
         </ul>
@@ -310,7 +310,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to PSFPy</h1>
+                <h1>Welcome to regularizepsf</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -322,15 +322,16 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-psfpy">
-<h1>Welcome to PSFPy<a class="headerlink" href="#welcome-to-psfpy" title="Permalink to this headline">#</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">psfpy</span></code> is a Python package (with Cython speed improvements) for determining and correcting
+  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-regularizepsf">
+<h1>Welcome to regularizepsf<a class="headerlink" href="#welcome-to-regularizepsf" title="Permalink to this headline">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">regularizepsf</span></code> is a Python package (with Cython speed improvements) for determining and correcting
 point spread functions in astronomical images.
-It was originally developed for the <a class="reference external" href="https://punch.space.swri.edu/">PUNCH</a> mission and is documented in this
-Astrophysical Journal paper.</p>
-<p>Below is an example of correcting PUNCH data using the package. Note that the residual tails in the corrected data are
-at or below about the 5% stellar level.</p>
-<a class="reference internal image-reference" href="_images/punch.png"><img alt="example of correction" class="align-center" src="_images/punch.png" style="width: 800px;" /></a>
+It was originally developed for the <a class="reference external" href="https://punch.space.swri.edu/">PUNCH</a> mission and is documented in an upcoming
+Astrophysical Journal paper. For now, see <a class="reference external" href="https://arxiv.org/abs/2212.02594">the arXiv listing</a>.</p>
+<p>Below is an example of correcting model data using the package. An initial image of a simplified starfield (a) is synthetically observed with a slowly
+varying PSF (b), then regularized with this technique (c). The final image visually matches a direct convolution of
+the initial image with the target PSF (d). The panels are gamma-corrected to highlight the periphery of the model PSFs.</p>
+<a class="reference internal image-reference" href="_images/model.png"><img alt="example of correction" class="align-center" src="_images/model.png" style="width: 800px;" /></a>
 <div class="toctree-wrapper compound">
 </div>
 </section>
