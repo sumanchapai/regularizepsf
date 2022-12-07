@@ -412,7 +412,10 @@ can be tricky.</p>
 <span class="n">target_evaluation</span> <span class="o">=</span> <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)))</span>
 <span class="n">array_corrector</span> <span class="o">=</span> <span class="n">ArrayCorrector</span><span class="p">(</span><span class="n">evaluation_dictionary</span><span class="p">,</span> <span class="n">target_evaluation</span><span class="p">)</span>
 
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">array_corrector</span><span class="o">.</span><span class="n">correct_image</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdul</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">array_corrector</span><span class="o">.</span><span class="n">correct_image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
