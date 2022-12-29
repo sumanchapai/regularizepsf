@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Mathematical Theory &#8212; regularizepsf</title>
+    <title>Mathematical Theory &#8212; regularizePSF</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -92,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <h1 class="site-logo" id="site-title">regularizepsf</h1>
+      <h1 class="site-logo" id="site-title">regularizePSF</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -104,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to regularizepsf
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -112,16 +113,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="quickstart.html">
    Quickstart
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array.html">
-   Correct using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ArrayCorrector
-    </span>
-   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -143,6 +134,59 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="cite.html">
    How to cite
   </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="help.html">
+   Getting help
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="api/regularizepsf/index.html">
+   API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/corrector/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.corrector
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/exceptions/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.exceptions
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/fitter/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.fitter
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/psf/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.psf
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -217,7 +261,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/punch-mission/regularizepsf"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -234,7 +278,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/punch-mission/regularizepsf/issues/new?title=Issue%20on%20page%20%2Ftheory.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -325,6 +369,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="mathematical-theory">
 <h1>Mathematical Theory<a class="headerlink" href="#mathematical-theory" title="Permalink to this headline">#</a></h1>
+<p>An introduction of the theory is provided in the <a class="reference internal" href="quickstart.html"><span class="doc std std-doc">QuickStart</span></a>.</p>
+<p>For details on the mathematical theory see <a class="reference external" href="https://arxiv.org/pdf/2212.02594.pdf">Section 2 of the paper</a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -377,7 +423,6 @@ title="Print to PDF"
   
     By PUNCH Science Operations Center<br/>
   
-      &copy; Copyright 2022.<br/>
 </p>
         </footer>
     </div>

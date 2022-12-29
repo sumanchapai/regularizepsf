@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Quickstart &#8212; regularizepsf</title>
+    <title>Quickstart &#8212; regularizePSF</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -52,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Correct using ArrayCorrector" href="array.html" />
-    <link rel="prev" title="Welcome to regularizepsf" href="intro.html" />
+    <link rel="next" title="Correct using FunctionalCorrector" href="functional.html" />
+    <link rel="prev" title="Welcome" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -92,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <h1 class="site-logo" id="site-title">regularizepsf</h1>
+      <h1 class="site-logo" id="site-title">regularizePSF</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -104,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to regularizepsf
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -112,16 +113,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Quickstart
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array.html">
-   Correct using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ArrayCorrector
-    </span>
-   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -143,6 +134,59 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="cite.html">
    How to cite
   </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="help.html">
+   Getting help
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="api/regularizepsf/index.html">
+   API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/corrector/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.corrector
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/exceptions/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.exceptions
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/fitter/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.fitter
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/regularizepsf/psf/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       regularizepsf.psf
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -195,6 +239,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/punch-mission/regularizepsf/main?urlpath=tree/docs/quickstart.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -217,7 +290,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/punch-mission/regularizepsf"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -234,7 +307,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fquickstart.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/punch-mission/regularizepsf/issues/new?title=Issue%20on%20page%20%2Fquickstart.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -261,6 +334,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="_sources/quickstart.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="_sources/quickstart.md"
    class="headerbtn"
@@ -327,14 +417,48 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extracting-a-simple-psf-model">
-   Extracting a simple PSF model
+  <a class="reference internal nav-link" href="#overview-of-the-technique">
+   Overview of the technique
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correcting-an-image-with-a-psf-arraycorrector">
-   Correcting an image with a PSF ArrayCorrector
+  <a class="reference internal nav-link" href="#demo-correcting-dash-image">
+   Demo: correcting DASH image
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-input-parameters">
+     Defining input parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-target-psf">
+     Building the target PSF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-arraycorrector">
+     Building the ArrayCorrector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performing-the-correction">
+     Performing the correction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average">
+       find_stars_and_average
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.correct_image">
+       correct_image
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -361,14 +485,48 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extracting-a-simple-psf-model">
-   Extracting a simple PSF model
+  <a class="reference internal nav-link" href="#overview-of-the-technique">
+   Overview of the technique
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correcting-an-image-with-a-psf-arraycorrector">
-   Correcting an image with a PSF ArrayCorrector
+  <a class="reference internal nav-link" href="#demo-correcting-dash-image">
+   Demo: correcting DASH image
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-input-parameters">
+     Defining input parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-target-psf">
+     Building the target PSF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-arraycorrector">
+     Building the ArrayCorrector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performing-the-correction">
+     Performing the correction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average">
+       find_stars_and_average
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.correct_image">
+       correct_image
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -384,40 +542,140 @@ title="Print to PDF"
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h1>
 <section id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">#</a></h2>
-<p>Installation should be as simple as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">regularizepsf</span></code>.</p>
+<p>Open a terminal and run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">regularizepsf</span></code>.</p>
 </section>
-<section id="extracting-a-simple-psf-model">
-<h2>Extracting a simple PSF model<a class="headerlink" href="#extracting-a-simple-psf-model" title="Permalink to this headline">#</a></h2>
-<p>Before you can correct an image, you need a PSF model for it.
-You can either define a functional model or an array model. A functional
+<section id="overview-of-the-technique">
+<h2>Overview of the technique<a class="headerlink" href="#overview-of-the-technique" title="Permalink to this headline">#</a></h2>
+<p>The basic premise of this technique is to model the point spread function of an imager using stars as our point sources.
+Then, we calculate the inverse PSF and apply it by multiplying in Fourier space as this is equivalent to convolving in image space. Instead
+of simply calculating the inverse PSF directly, we also include a “target PSF” model to make the resulting corrected
+stars uniform. This target is typically a Gaussian as shown below in the example. See <a class="reference internal" href="theory.html"><span class="doc std std-doc">theory</span></a> for more details.</p>
+</section>
+<section id="demo-correcting-dash-image">
+<h2>Demo: correcting DASH image<a class="headerlink" href="#demo-correcting-dash-image" title="Permalink to this headline">#</a></h2>
+<p>This tutorial uses an image from the Demonstration Airglow-Subtracted Heliospheric
+imager (DASH) as an example. For details on DASH see Section 4.2 of the <span class="xref myst">accompanying paper</span>.
+Here is a visualization of the result we’re aiming to produce.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/dash.png"><img alt="DASH correction example" src="_images/dash.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Image patches in a DASH image before and after PSF regularization. Left: Stars in each region exhibit a varying PSF before correction. Right: After application of a transfer PSF, the stars are more uniform across the image.  The panels are gamma-corrected to highlight the periphery of the
+original and regularized PSFs</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="defining-input-parameters">
+<h3>Defining input parameters<a class="headerlink" href="#defining-input-parameters" title="Permalink to this headline">#</a></h3>
+<p>Before you can correct an image, you need a PSF model for the system that collected the image.
+You can either define a <strong>functional model</strong> or an <strong>array model.</strong> A functional
 model is defined by an equation whereas an array model uses the data directly as the model.
 For most purposes, we recommend an array model because deriving the correct functional form
-can be tricky.</p>
-</section>
-<section id="correcting-an-image-with-a-psf-arraycorrector">
-<h2>Correcting an image with a PSF ArrayCorrector<a class="headerlink" href="#correcting-an-image-with-a-psf-arraycorrector" title="Permalink to this headline">#</a></h2>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">regularizepsf.fitter</span> <span class="kn">import</span> <span class="n">CoordinatePatchCollection</span>
-<span class="n">patch_size</span><span class="p">,</span> <span class="n">psf_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">32</span>
-<span class="n">image_fn</span> <span class="o">=</span> <span class="s2">&quot;path/to/image.fits&quot;</span>
+can be tricky. Thus, this quickstart tutorial walks through the array model PSF model form.</p>
+<p>First, we need to define both the <code class="docutils literal notranslate"><span class="pre">psf_size</span></code> and the <code class="docutils literal notranslate"><span class="pre">patch_size</span></code>. This technique breaks the image into
+overlapping square neighborhoods of length <code class="docutils literal notranslate"><span class="pre">patch_size</span></code> on each side. In this case a <code class="docutils literal notranslate"><span class="pre">patch_size</span></code> of 256 indicates we use a <code class="docutils literal notranslate"><span class="pre">256x255</span></code> neighborhood size. However, we know for
+this instrument that the PSF is more compact than this, i.e. a star will not contribute light over the full neighborhood.
+For computational efficiency reasons, we thus use a <code class="docutils literal notranslate"><span class="pre">psf_size</span></code> of <code class="docutils literal notranslate"><span class="pre">32x32</span></code>. For each star, a box centered on the star
+of size <code class="docutils literal notranslate"><span class="pre">32x32</span></code> pixels is extracted. These are averaged to create the PSF model. The region outside the <code class="docutils literal notranslate"><span class="pre">32x32</span></code> box but
+within <code class="docutils literal notranslate"><span class="pre">256x256</span></code> pixel window is filled with the median of the image.</p>
+<p>Finally, we need to set the target PSF model’s parameters. In this case, we will simply use a
+symmetric Gaussian and thus have one parameter: the full-width-half-maximum (FWHM). We set this at 3.25 pixels.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">regularizepsf</span> <span class="kn">import</span> <span class="n">CoordinatePatchCollection</span><span class="p">,</span> <span class="n">simple_psf</span>
 
-<span class="n">averaged</span> <span class="o">=</span>  <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">find_stars_and_average</span><span class="p">([</span><span class="n">image_fn</span><span class="p">],</span> 
-                                                             <span class="n">psf_size</span><span class="p">,</span> 
-                                                             <span class="n">patch_size</span><span class="p">)</span>
+<span class="c1"># Define the parameters and image to use</span>
+<span class="n">psf_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">patch_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">target_fwhm</span> <span class="o">=</span> <span class="mf">3.25</span>
+<span class="n">image_fn</span> <span class="o">=</span> <span class="s2">&quot;data/DASH.fits&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="building-the-target-psf">
+<h3>Building the target PSF<a class="headerlink" href="#building-the-target-psf" title="Permalink to this headline">#</a></h3>
+<p>We first create a target PSF model by defining
+a Python function that has inputs of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> and outputs the value of the PSF at <code class="docutils literal notranslate"><span class="pre">(x,y)</span></code>.
+This is a functional model and is thus decorated with the <code class="docutils literal notranslate"><span class="pre">simple_psf</span></code> decorator. We evaluate the model over the full
+patch size.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the target PSF</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">patch_size</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">target_fwhm</span> <span class="o">/</span> <span class="mf">2.355</span>
 
 <span class="nd">@simple_psf</span>
-<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">patch_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">patch_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mf">3.25</span> <span class="o">/</span> <span class="mf">2.355</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mf">3.25</span> <span class="o">/</span> <span class="mf">2.355</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="n">sigma</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">sigma_x</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">sigma_y</span><span class="p">))))</span>
 
-<span class="n">evaluation_dictionary</span> <span class="o">=</span> <span class="p">{(</span><span class="n">identifier</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">identifer</span><span class="o">.</span><span class="n">y</span><span class="p">):</span> <span class="n">patch</span> <span class="k">for</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averaged</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 <span class="n">target_evaluation</span> <span class="o">=</span> <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)))</span>
-<span class="n">array_corrector</span> <span class="o">=</span> <span class="n">ArrayCorrector</span><span class="p">(</span><span class="n">evaluation_dictionary</span><span class="p">,</span> <span class="n">target_evaluation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="building-the-arraycorrector">
+<h3>Building the ArrayCorrector<a class="headerlink" href="#building-the-arraycorrector" title="Permalink to this headline">#</a></h3>
+<p>Everything else is handled in the <code class="docutils literal notranslate"><span class="pre">find_stars_and_average</span></code> method on the <code class="docutils literal notranslate"><span class="pre">CoordinatePatchCollection</span></code>.
+It takes a list of images, the <code class="docutils literal notranslate"><span class="pre">psf_size</span></code>, and the <code class="docutils literal notranslate"><span class="pre">patch_size</span></code>. The function’s signature is:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average">
+<span class="sig-name descname"><span class="pre">find_stars_and_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'median'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdu_choice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
+<p>We convert from a <code class="docutils literal notranslate"><span class="pre">CoordinatePatchCollection</span></code> object
+to an <code class="docutils literal notranslate"><span class="pre">ArrayCorrector</span></code> using the <code class="docutils literal notranslate"><span class="pre">to_array_corrector</span></code> method. It requires an evaluated target PSF, which we constructed
+in the previous section.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract all the stars from that image and create a PSF model with a target PSF</span>
+<span class="n">array_corrector</span> <span class="o">=</span>  <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">find_stars_and_average</span><span class="p">([</span><span class="n">image_fn</span><span class="p">],</span> 
+                                                                     <span class="n">psf_size</span><span class="p">,</span> 
+                                                                     <span class="n">patch_size</span><span class="p">)</span><span class="o">.</span><span class="n">to_array_corrector</span><span class="p">(</span><span class="n">target_evaluation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performing-the-correction">
+<h3>Performing the correction<a class="headerlink" href="#performing-the-correction" title="Permalink to this headline">#</a></h3>
+<p>Now we have all the components. It’s time to correct the image! We open it as a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array and then use the
+<code class="docutils literal notranslate"><span class="pre">array_corrector</span></code> to correct.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The image data type <em>must be</em> float. Otherwise, you will receive a somewhat cryptic error about DTYPEs not matching.
+It also must match the endianness of your computer. This can be a problem as many computers are little-endian but FITS
+images are stored big-endian.</p>
+</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the image for correcting</span>
 <span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdul</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     
+<span class="c1"># See the corrected result! </span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">array_corrector</span><span class="o">.</span><span class="n">correct_image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>The signature of <code class="docutils literal notranslate"><span class="pre">correct_image</span></code> is:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="regularizepsf.corrector.ArrayCorrector.correct_image">
+<span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#regularizepsf.corrector.ArrayCorrector.correct_image" title="Permalink to this definition">#</a></dt>
+<dd><p>PSF correct an image according to the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>2D float np.ndarray</em>) – image to be corrected</p></li>
+<li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image, only used for FunctionalCorrector</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification to attenuation, see notes</p></li>
+<li><p><strong>epsilon</strong> (<em>float</em>) – controls the maximum of the amplification, see notes</p></li>
+<li><p><strong>use_gpu</strong> (<em>bool</em>) – True uses GPU acceleration, False does not.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a image that has been PSF corrected</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p># TODO: add notes</p>
+</dd></dl>
+
+<p>You can save the <code class="docutils literal notranslate"><span class="pre">ArrayCorrector</span></code> for future usage instead of having to derive it for each image. This is done by simply:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array_corrector</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;path_to_save.psf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -452,13 +710,13 @@ can be tricky.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to regularizepsf</p>
+            <p class="prev-next-title">Welcome</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="array.html" title="next page">
+    <a class='right-next' id="next-link" href="functional.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correct using <code class="docutils literal notranslate"><span class="pre">ArrayCorrector</span></code></p>
+        <p class="prev-next-title">Correct using <code class="docutils literal notranslate"><span class="pre">FunctionalCorrector</span></code></p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -471,7 +729,6 @@ can be tricky.</p>
   
     By PUNCH Science Operations Center<br/>
   
-      &copy; Copyright 2022.<br/>
 </p>
         </footer>
     </div>
