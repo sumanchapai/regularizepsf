@@ -336,7 +336,7 @@ title="Open an issue"
 <div class="viewcode-block" id="PointSpreadFunctionABC"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.PointSpreadFunctionABC">[docs]</a><span class="k">class</span> <span class="nc">PointSpreadFunctionABC</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="PointSpreadFunctionABC.__call__"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.PointSpreadFunctionABC.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Real</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarary</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Real</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Real</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Evaluation of the point spread function</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluation of the point spread function</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -354,14 +354,14 @@ title="Open an issue"
     <span class="nd">@property</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="PointSpreadFunctionABC.parameters"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.PointSpreadFunctionABC.parameters">[docs]</a>    <span class="k">def</span> <span class="nf">parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Varying parameters of the model.&quot;&quot;&quot;</span></div></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Varying parameters of the model.&quot;&quot;&quot;</span></div></div>
 
 
 <div class="viewcode-block" id="SimplePSF"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.SimplePSF">[docs]</a><span class="k">class</span> <span class="nc">SimplePSF</span><span class="p">(</span><span class="n">PointSpreadFunctionABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Model for a simple PSF&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Model for a simple PSF&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates a PSF object</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a PSF object</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -399,7 +399,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="VariedPSF"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.VariedPSF">[docs]</a><span class="k">class</span> <span class="nc">VariedPSF</span><span class="p">(</span><span class="n">PointSpreadFunctionABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Model for a PSF that varies over the field of view&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Model for a PSF that varies over the field of view&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vary_function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">base_psf</span><span class="p">:</span> <span class="n">SimplePSF</span><span class="p">,</span> <span class="n">validate_at_call</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_vary_function</span> <span class="o">=</span> <span class="n">vary_function</span>

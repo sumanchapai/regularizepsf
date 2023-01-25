@@ -357,7 +357,7 @@ title="Open an issue"
     <span class="nd">@classmethod</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="PatchCollectionABC.extract"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Construct a PatchCollection from a set of images using the specified coordinates and patch size</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a PatchCollection from a set of images using the specified coordinates and patch size</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -375,7 +375,7 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.__getitem__"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Access a patch with square brackets</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access a patch with square brackets</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -393,7 +393,7 @@ title="Open an issue"
             <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2"> is not used to identify a patch in this collection.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.__contains__"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.__contains__">[docs]</a>    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Determines if a patch is in the collection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines if a patch is in the collection</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -408,7 +408,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="n">identifier</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patches</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.add"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">patch</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Add a new patch to the collection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new patch to the collection</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -433,7 +433,7 @@ title="Open an issue"
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="PatchCollectionABC.average"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.average">[docs]</a>    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corners</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Construct a new PatchCollection where patches lying inside a new grid are averaged together</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a new PatchCollection where patches lying inside a new grid are averaged together</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -454,7 +454,7 @@ title="Open an issue"
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="PatchCollectionABC.fit"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_psf</span><span class="p">:</span> <span class="n">SimplePSF</span><span class="p">,</span> <span class="n">is_varied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PointSpreadFunctionABC</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -467,7 +467,7 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.save"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Save the PatchCollection to a file</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the PatchCollection to a file</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -482,7 +482,7 @@ title="Open an issue"
 
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="PatchCollectionABC.load"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Load a PatchCollection from a file</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load a PatchCollection from a file</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -497,15 +497,15 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.keys"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets identifiers for all patches&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets identifiers for all patches&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patches</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.values"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.values">[docs]</a>    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets values of all patches&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets values of all patches&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patches</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.items"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.items">[docs]</a>    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A dictionary like iterator over the patches&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;A dictionary like iterator over the patches&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patches</span><span class="o">.</span><span class="n">items</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PatchCollectionABC.__next__"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.__next__">[docs]</a>    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -513,7 +513,7 @@ title="Open an issue"
         <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="nf">_fit_lmfit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_psf</span><span class="p">:</span> <span class="n">SimplePSF</span><span class="p">,</span> <span class="n">initial_guesses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Real</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">MinimizerResult</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Fit a patch using lmfit</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a patch using lmfit</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -546,7 +546,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="CoordinatePatchCollection"><a class="viewcode-back" href="../../api/regularizepsf/index.html#regularizepsf.fitter.CoordinatePatchCollection">[docs]</a><span class="k">class</span> <span class="nc">CoordinatePatchCollection</span><span class="p">(</span><span class="n">PatchCollectionABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A representation of a PatchCollection that operates on pixel coordinates from a set of images&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A representation of a PatchCollection that operates on pixel coordinates from a set of images&quot;&quot;&quot;</span>
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="CoordinatePatchCollection.extract"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.CoordinatePatchCollection.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
                 <span class="n">coordinates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CoordinateIdentifier</span><span class="p">],</span>
@@ -571,7 +571,7 @@ title="Open an issue"
                                <span class="n">interpolation_scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                                <span class="n">average_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
                                <span class="n">star_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">hdu_choice</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Loads a series of images, finds stars in each, and builds a CoordinatePatchCollection with averaged stars</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads a series of images, finds stars in each, and builds a CoordinatePatchCollection with averaged stars</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -706,7 +706,7 @@ title="Open an issue"
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determine if the average_mode is a valid kind&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if the average_mode is a valid kind&quot;&quot;&quot;</span>
         <span class="n">valid_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_modes</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found a mode of </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2"> but it must be in the list </span><span class="si">{</span><span class="n">valid_modes</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
@@ -726,7 +726,7 @@ title="Open an issue"
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CoordinatePatchCollection.to_array_corrector"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.CoordinatePatchCollection.to_array_corrector">[docs]</a>    <span class="k">def</span> <span class="nf">to_array_corrector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_evaluation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArrayCorrector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Converts a patch collection that has been averaged into an ArrayCorrector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts a patch collection that has been averaged into an ArrayCorrector</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

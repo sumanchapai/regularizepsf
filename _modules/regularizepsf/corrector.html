@@ -337,7 +337,7 @@ title="Open an issue"
 <div class="viewcode-block" id="CorrectorABC"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.CorrectorABC">[docs]</a><span class="k">class</span> <span class="nc">CorrectorABC</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="CorrectorABC.save"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.CorrectorABC.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Save the model to a file.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the model to a file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -352,7 +352,7 @@ title="Open an issue"
     <span class="nd">@classmethod</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="CorrectorABC.load"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.CorrectorABC.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CorrectorABC</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Loads a model from the path</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads a model from the path</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -367,7 +367,7 @@ title="Open an issue"
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <div class="viewcode-block" id="CorrectorABC.correct_image"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.CorrectorABC.correct_image">[docs]</a>    <span class="k">def</span> <span class="nf">correct_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                       <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">use_gpu</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;PSF correct an image according to the model</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;PSF correct an image according to the model</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -390,13 +390,13 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="FunctionalCorrector"><a class="viewcode-back" href="../../api/regularizepsf/index.html#regularizepsf.corrector.FunctionalCorrector">[docs]</a><span class="k">class</span> <span class="nc">FunctionalCorrector</span><span class="p">(</span><span class="n">CorrectorABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A version of the PSF corrector that stores the model as a set of functions.</span>
 <span class="sd">    For the actual correction, the functions must first be evaluated to an ArrayCorrector.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psf</span><span class="p">:</span> <span class="n">PointSpreadFunctionABC</span><span class="p">,</span>
                  <span class="n">target_model</span><span class="p">:</span> <span class="n">SimplePSF</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize a FunctionalCorrector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a FunctionalCorrector</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -411,7 +411,7 @@ title="Open an issue"
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="FunctionalCorrector.is_variable"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.FunctionalCorrector.is_variable">[docs]</a>    <span class="k">def</span> <span class="nf">is_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bool</span>
@@ -420,7 +420,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variable</span></div>
 
 <div class="viewcode-block" id="FunctionalCorrector.evaluate_to_array_form"><a class="viewcode-back" href="../../api/regularizepsf/corrector/index.html#regularizepsf.corrector.FunctionalCorrector.evaluate_to_array_form">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_to_array_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArrayCorrector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Evaluates a FunctionalCorrector to an ArrayCorrector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluates a FunctionalCorrector to an ArrayCorrector</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -468,10 +468,10 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="ArrayCorrector"><a class="viewcode-back" href="../../api/regularizepsf/index.html#regularizepsf.corrector.ArrayCorrector">[docs]</a><span class="k">class</span> <span class="nc">ArrayCorrector</span><span class="p">(</span><span class="n">CorrectorABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; A PSF corrector that is evaluated as array patches</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; A PSF corrector that is evaluated as array patches</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluations</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">target_evaluation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize an ArrayCorrector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize an ArrayCorrector</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -496,8 +496,8 @@ title="Open an issue"
         <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">evaluation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">EvaluatedModelInconsistentSizeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected evaluated model to have shapes of &quot;</span>
-                                                          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">)</span><span class="si">}</span><span class="s2">. Found </span><span class="si">{</span><span class="n">evaluation</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> &quot;</span>
-                                                          <span class="sa">f</span><span class="s2">&quot;at </span><span class="si">{</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+                                                          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">)</span><span class="si">}</span><span class="s2">. Found </span><span class="si">{</span><span class="n">evaluation</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> &quot;</span>
+                                                          <span class="sa">f</span><span class="s2">&quot;at </span><span class="si">{</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_target_evaluation</span> <span class="o">=</span> <span class="n">target_evaluation</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_evaluation</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">):</span>
@@ -532,7 +532,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="calculate_covering"><a class="viewcode-back" href="../../api/regularizepsf/index.html#regularizepsf.corrector.calculate_covering">[docs]</a><span class="k">def</span> <span class="nf">calculate_covering</span><span class="p">(</span><span class="n">image_shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Determines the grid of overlapping neighborhood patches.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determines the grid of overlapping neighborhood patches.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
