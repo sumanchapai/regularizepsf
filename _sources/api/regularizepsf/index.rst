@@ -60,7 +60,7 @@ Package Contents
       :rtype: ArrayCorrector
 
 
-   .. py:method:: correct_image(image: numpy.ndarray, size: int, alpha: float = 0.5, epsilon: float = 0.05, use_gpu: bool = False) -> numpy.ndarray
+   .. py:method:: correct_image(image: numpy.ndarray, size: int, alpha: float = 0.5, epsilon: float = 0.05) -> numpy.ndarray
 
       PSF correct an image according to the model
 
@@ -72,8 +72,6 @@ Package Contents
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
-      :param use_gpu: True uses GPU acceleration, False does not.
-      :type use_gpu: bool
 
       :returns: a image that has been PSF corrected
       :rtype: np.ndarray
@@ -98,6 +96,19 @@ Package Contents
       :type path: str or `pathlib.Path`
 
 
+   .. py:method:: simulate_observation(image: numpy.ndarray, size: int) -> numpy.ndarray
+
+      Simulates on a star field what an observation using this PSF looks like
+
+      :param image: image of point source stars to simluate PSF for
+      :type image: 2D float np.ndarray
+      :param size: the PSF will be evaluated to size x size pixels box
+      :type size: int
+
+      :returns: an image with the PSF applied
+      :rtype: np.ndarray
+
+
 
 .. py:class:: ArrayCorrector(evaluations: dict[Any, numpy.ndarray], target_evaluation: numpy.ndarray)
 
@@ -115,7 +126,7 @@ Package Contents
    :param target_evaluation: evaluated version of the target PSF
    :type target_evaluation: np.ndarray
 
-   .. py:method:: correct_image(image: numpy.ndarray, size: int = None, alpha: float = 0.5, epsilon: float = 0.05, use_gpu: bool = False) -> numpy.ndarray
+   .. py:method:: correct_image(image: numpy.ndarray, size: int = None, alpha: float = 0.5, epsilon: float = 0.05) -> numpy.ndarray
 
       PSF correct an image according to the model
 
@@ -127,8 +138,6 @@ Package Contents
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
-      :param use_gpu: True uses GPU acceleration, False does not.
-      :type use_gpu: bool
 
       :returns: a image that has been PSF corrected
       :rtype: np.ndarray
@@ -154,6 +163,17 @@ Package Contents
 
       :param path: where to load the model from, suggested extension is ".psf"
       :type path: str or `pathlib.Path`
+
+
+   .. py:method:: simulate_observation(image: numpy.ndarray) -> numpy.ndarray
+
+      Simulates on a star field what an observation using this PSF looks like
+
+      :param image: image of point source stars to simluate PSF for
+      :type image: 2D float np.ndarray
+
+      :returns: an image with the PSF applied
+      :rtype: np.ndarray
 
 
 

@@ -390,6 +390,11 @@ title="Print to PDF"
        correct_image
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.CorrectorABC.simulate_observation">
+       simulate_observation
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -422,6 +427,11 @@ title="Print to PDF"
        load
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.FunctionalCorrector.simulate_observation">
+       simulate_observation
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -447,6 +457,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.load">
        load
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.simulate_observation">
+       simulate_observation
       </a>
      </li>
     </ul>
@@ -502,6 +517,11 @@ title="Print to PDF"
        correct_image
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.CorrectorABC.simulate_observation">
+       simulate_observation
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -534,6 +554,11 @@ title="Print to PDF"
        load
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.FunctionalCorrector.simulate_observation">
+       simulate_observation
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -559,6 +584,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.load">
        load
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularizepsf.corrector.ArrayCorrector.simulate_observation">
+       simulate_observation
       </a>
      </li>
     </ul>
@@ -614,7 +644,7 @@ title="Print to PDF"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regularizepsf.corrector.CorrectorABC.correct_image">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#CorrectorABC.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.CorrectorABC.correct_image" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#CorrectorABC.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.CorrectorABC.correct_image" title="Permalink to this definition">#</a></dt>
 <dd><p>PSF correct an image according to the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -623,11 +653,27 @@ title="Print to PDF"
 <li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image, only used for FunctionalCorrector</p></li>
 <li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification to attenuation, see notes</p></li>
 <li><p><strong>epsilon</strong> (<em>float</em>) – controls the maximum of the amplification, see notes</p></li>
-<li><p><strong>use_gpu</strong> (<em>bool</em>) – True uses GPU acceleration, False does not.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a image that has been PSF corrected</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="regularizepsf.corrector.CorrectorABC.simulate_observation">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulate_observation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#CorrectorABC.simulate_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.CorrectorABC.simulate_observation" title="Permalink to this definition">#</a></dt>
+<dd><p>Simulates on a star field what an observation using this PSF looks like</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>2D float np.ndarray</em>) – image of point source stars to simluate PSF for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an image with the PSF applied</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -682,7 +728,7 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regularizepsf.corrector.FunctionalCorrector.correct_image">
-<span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#FunctionalCorrector.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.FunctionalCorrector.correct_image" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#FunctionalCorrector.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.FunctionalCorrector.correct_image" title="Permalink to this definition">#</a></dt>
 <dd><p>PSF correct an image according to the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -691,7 +737,6 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 <li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image, only used for FunctionalCorrector</p></li>
 <li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification to attenuation, see notes</p></li>
 <li><p><strong>epsilon</strong> (<em>float</em>) – controls the maximum of the amplification, see notes</p></li>
-<li><p><strong>use_gpu</strong> (<em>bool</em>) – True uses GPU acceleration, False does not.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -728,6 +773,26 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="regularizepsf.corrector.FunctionalCorrector.simulate_observation">
+<span class="sig-name descname"><span class="pre">simulate_observation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#FunctionalCorrector.simulate_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.FunctionalCorrector.simulate_observation" title="Permalink to this definition">#</a></dt>
+<dd><p>Simulates on a star field what an observation using this PSF looks like</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>2D float np.ndarray</em>) – image of point source stars to simluate PSF for</p></li>
+<li><p><strong>size</strong> (<em>int</em>) – the PSF will be evaluated to size x size pixels box</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an image with the PSF applied</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -750,7 +815,7 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="regularizepsf.corrector.ArrayCorrector.correct_image">
-<span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#ArrayCorrector.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.ArrayCorrector.correct_image" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">correct_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#ArrayCorrector.correct_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.ArrayCorrector.correct_image" title="Permalink to this definition">#</a></dt>
 <dd><p>PSF correct an image according to the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -759,7 +824,6 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 <li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image, only used for FunctionalCorrector</p></li>
 <li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification to attenuation, see notes</p></li>
 <li><p><strong>epsilon</strong> (<em>float</em>) – controls the maximum of the amplification, see notes</p></li>
-<li><p><strong>use_gpu</strong> (<em>bool</em>) – True uses GPU acceleration, False does not.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -797,6 +861,23 @@ For the actual correction, the functions must first be evaluated to an ArrayCorr
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>path</strong> (str or <cite>pathlib.Path</cite>) – where to load the model from, suggested extension is “.psf”</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="regularizepsf.corrector.ArrayCorrector.simulate_observation">
+<span class="sig-name descname"><span class="pre">simulate_observation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../../_modules/regularizepsf/corrector.html#ArrayCorrector.simulate_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#regularizepsf.corrector.ArrayCorrector.simulate_observation" title="Permalink to this definition">#</a></dt>
+<dd><p>Simulates on a star field what an observation using this PSF looks like</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>2D float np.ndarray</em>) – image of point source stars to simluate PSF for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an image with the PSF applied</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
