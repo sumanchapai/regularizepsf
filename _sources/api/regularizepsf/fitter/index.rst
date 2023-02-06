@@ -183,7 +183,7 @@ Module Contents
       Using an `interpolation_scale` other than 1 for large images can dramatically slow down the execution.
 
 
-   .. py:method:: average(corners: numpy.ndarray, step: int, size: int, mode: str = 'median') -> PatchCollectionABC
+   .. py:method:: average(corners: numpy.ndarray, patch_size: int, psf_size: int, mode: str = 'median') -> PatchCollectionABC
 
       Construct a new PatchCollection where patches lying inside a new grid are averaged together
 
