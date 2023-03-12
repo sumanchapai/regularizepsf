@@ -37,9 +37,11 @@ Module Contents
 
       :param image: image to be corrected
       :type image: 2D float np.ndarray
-      :param size: how big to make the patches when correcting an image, only used for FunctionalCorrector
+      :param size: how big to make the patches when correcting an image,
+                   only used for FunctionalCorrector
       :type size: int
-      :param alpha: controls the “hardness” of the transition from amplification to attenuation, see notes
+      :param alpha: controls the “hardness” of the transition from amplification
+                    to attenuation, see notes
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
@@ -66,7 +68,8 @@ Module Contents
    Bases: :py:obj:`CorrectorABC`
 
    A version of the PSF corrector that stores the model as a set of functions.
-   For the actual correction, the functions must first be evaluated to an ArrayCorrector.
+   For the actual correction, the functions must first
+   be evaluated to an ArrayCorrector.
 
    Initialize a FunctionalCorrector
 
@@ -78,7 +81,12 @@ Module Contents
    .. py:property:: is_variable
       :type: bool
 
-      returns: True if the PSF model is varied (changes across the field-of-view) and False otherwise
+      
+
+
+
+      returns: True if the PSF model is varied (changes across the field-of-view)
+                and False otherwise
       :rtype: bool
 
    .. py:method:: evaluate_to_array_form(x: numpy.ndarray, y: numpy.ndarray, size: int) -> ArrayCorrector
@@ -102,9 +110,11 @@ Module Contents
 
       :param image: image to be corrected
       :type image: 2D float np.ndarray
-      :param size: how big to make the patches when correcting an image, only used for FunctionalCorrector
+      :param size: how big to make the patches when correcting an image,
+                   only used for FunctionalCorrector
       :type size: int
-      :param alpha: controls the “hardness” of the transition from amplification to attenuation, see notes
+      :param alpha: controls the “hardness” of the transition from amplification
+                    to attenuation, see notes
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
@@ -113,7 +123,7 @@ Module Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: save(path)
+   .. py:method:: save(path: str) -> None
 
       Save the model to a file.
 
@@ -123,7 +133,7 @@ Module Contents
       :rtype: None
 
 
-   .. py:method:: load(path)
+   .. py:method:: load(path: str) -> FunctionalCorrector
       :classmethod:
 
       Loads a model from the path
@@ -156,8 +166,10 @@ Module Contents
    Initialize an ArrayCorrector
 
    :param evaluations:
-                       evaluated version of the PSF as they vary over the image, keys should be (x, y) of the lower left
-                           pixel of each patch. values should be the `np.ndarray` that corresponds to that patch
+                       evaluated version of the PSF as they vary over the image,
+                           keys should be (x, y) of the lower left
+                           pixel of each patch. values should be the `np.ndarray`
+                           that corresponds to that patch
    :type evaluations: dict
    :param target_evaluation: evaluated version of the target PSF
    :type target_evaluation: np.ndarray
@@ -168,9 +180,11 @@ Module Contents
 
       :param image: image to be corrected
       :type image: 2D float np.ndarray
-      :param size: how big to make the patches when correcting an image, only used for FunctionalCorrector
+      :param size: how big to make the patches when correcting an image,
+                   only used for FunctionalCorrector
       :type size: int
-      :param alpha: controls the “hardness” of the transition from amplification to attenuation, see notes
+      :param alpha: controls the “hardness” of the transition from amplification
+                    to attenuation, see notes
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
@@ -179,10 +193,10 @@ Module Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: __getitem__(xy) -> numpy.ndarray
+   .. py:method:: __getitem__(xy: Tuple[int, int]) -> numpy.ndarray
 
 
-   .. py:method:: save(path)
+   .. py:method:: save(path: str) -> None
 
       Save the model to a file.
 
@@ -192,7 +206,7 @@ Module Contents
       :rtype: None
 
 
-   .. py:method:: load(path)
+   .. py:method:: load(path: str) -> ArrayCorrector
       :classmethod:
 
       Loads a model from the path
@@ -222,7 +236,8 @@ Module Contents
    :param size: size of the square patches we want to create
    :type size: int
 
-   :returns: an array of shape Nx2 where return[:, 0] are the x coordinate and return[:, 1] are the y coordinates
+   :returns: an array of shape Nx2 where return[:, 0]
+             are the x coordinate and return[:, 1] are the y coordinates
    :rtype: np.ndarray
 
 

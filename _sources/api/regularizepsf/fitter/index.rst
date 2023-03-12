@@ -9,18 +9,21 @@ Module Contents
 
 .. py:class:: PatchCollectionABC(patches: dict[Any, numpy.ndarray])
 
-   .. py:method:: __len__()
+   .. py:method:: __len__() -> int
 
 
    .. py:method:: extract(images: list[numpy.ndarray], coordinates: list, size: int) -> PatchCollectionABC
       :classmethod:
       :abstractmethod:
 
-      Construct a PatchCollection from a set of images using the specified coordinates and patch size
+      Construct a PatchCollection from a set of images
+      using the specified coordinates and patch size
 
       :param images: the images loaded
       :type images: list of np.ndarrays
-      :param coordinates: A list of coordinates for the lower left pixel of each patch, specified in each type of PatchCollection
+      :param coordinates:
+                          A list of coordinates for the lower left pixel of each patch,
+                              specified in each type of PatchCollection
       :type coordinates: list
       :param size: size of one side of the square patches extracted
       :type size: int
@@ -33,7 +36,8 @@ Module Contents
 
       Access a patch with square brackets
 
-      :param identifier: identifier for a given patch, specifically implemented for each PatchCollection
+      :param identifier: identifier for a given patch, specifically implemented
+                         for each PatchCollection
       :type identifier: Any
 
       :returns: a patch's data
@@ -44,10 +48,15 @@ Module Contents
 
       Determines if a patch is in the collection
 
-      :param identifier: identifier for a given patch, specifically implemented for each PatchCollection
+      :param identifier:
+                         identifier for a given patch,
+                             specifically implemented for each PatchCollection
       :type identifier: Any
 
-      :returns: True if patch with specified identifier is in the collection, False otherwise
+      :returns:
+
+                True if patch with specified identifier is in the collection,
+                    False otherwise
       :rtype: bool
 
 
@@ -55,7 +64,9 @@ Module Contents
 
       Add a new patch to the collection
 
-      :param identifier: identifier for a given patch, specifically implemented for each PatchCollection
+      :param identifier:
+                         identifier for a given patch,
+                             specifically implemented for each PatchCollection
       :type identifier: Any
       :param patch: the data for a specific patch
       :type patch: np.ndarray
@@ -66,7 +77,8 @@ Module Contents
    .. py:method:: average(corners: numpy.ndarray, step: int, size: int, mode: str) -> PatchCollectionABC
       :abstractmethod:
 
-      Construct a new PatchCollection where patches lying inside a new grid are averaged together
+      Construct a new PatchCollection where patches
+      lying inside a new grid are averaged together
 
       :param corners: an Nx2 `np.ndarray` of the lower left corners of the new patch grid
       :type corners: np.ndarray
@@ -98,7 +110,7 @@ Module Contents
       :rtype: None
 
 
-   .. py:method:: load(path) -> PatchCollectionABC
+   .. py:method:: load(path: str) -> PatchCollectionABC
       :classmethod:
 
       Load a PatchCollection from a file
@@ -110,22 +122,19 @@ Module Contents
       :rtype: PatchCollectionABC
 
 
-   .. py:method:: keys()
+   .. py:method:: keys() -> List
 
       Gets identifiers for all patches
 
 
-   .. py:method:: values()
+   .. py:method:: values() -> List
 
       Gets values of all patches
 
 
-   .. py:method:: items()
+   .. py:method:: items() -> Dict
 
       A dictionary like iterator over the patches
-
-
-   .. py:method:: __next__()
 
 
 
@@ -137,16 +146,20 @@ Module Contents
 
    Bases: :py:obj:`PatchCollectionABC`
 
-   A representation of a PatchCollection that operates on pixel coordinates from a set of images
+   A representation of a PatchCollection that operates
+   on pixel coordinates from a set of images
 
    .. py:method:: extract(images: list[numpy.ndarray], coordinates: list[CoordinateIdentifier], size: int) -> PatchCollectionABC
       :classmethod:
 
-      Construct a PatchCollection from a set of images using the specified coordinates and patch size
+      Construct a PatchCollection from a set of images
+      using the specified coordinates and patch size
 
       :param images: the images loaded
       :type images: list of np.ndarrays
-      :param coordinates: A list of coordinates for the lower left pixel of each patch, specified in each type of PatchCollection
+      :param coordinates:
+                          A list of coordinates for the lower left pixel of each patch,
+                              specified in each type of PatchCollection
       :type coordinates: list
       :param size: size of one side of the square patches extracted
       :type size: int
@@ -155,10 +168,11 @@ Module Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: find_stars_and_average(image_paths: list[str], psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice=0)
+   .. py:method:: find_stars_and_average(image_paths: list[str], psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
       :classmethod:
 
-      Loads a series of images, finds stars in each, and builds a CoordinatePatchCollection with averaged stars
+      Loads a series of images, finds stars in each,
+          and builds a CoordinatePatchCollection with averaged stars
 
       :param image_paths: location of FITS files to load
       :type image_paths: List[str]
@@ -166,13 +180,19 @@ Module Contents
       :type psf_size: int
       :param patch_size: square size that each PSF model applies to
       :type patch_size: int
-      :param interpolation_scale: if >1, the image are first scaled by this factor. This results in stars being aligned at a subpixel scale
+      :param interpolation_scale:
+                                  if >1, the image are first scaled by this factor.
+                                      This results in stars being aligned at a subpixel scale
       :type interpolation_scale: int
       :param average_mode: "median" or "mean" determines how patches are combined
       :type average_mode: str
-      :param star_threshold: SEP's threshold for finding stars. See `threshold` in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
+      :param star_threshold:
+                             SEP's threshold for finding stars. See `threshold`
+                                 in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
       :type star_threshold: int
-      :param hdu_choice: Which HDU from each image will be used, default of 0 is most common but could be 1 for compressed images
+      :param hdu_choice:
+                         Which HDU from each image will be used,
+                             default of 0 is most common but could be 1 for compressed images
       :type hdu_choice: int
 
       :returns: An averaged star model built from the provided images
@@ -180,12 +200,14 @@ Module Contents
 
       .. rubric:: Notes
 
-      Using an `interpolation_scale` other than 1 for large images can dramatically slow down the execution.
+      Using an `interpolation_scale` other than 1
+          for large images can dramatically slow down the execution.
 
 
    .. py:method:: average(corners: numpy.ndarray, patch_size: int, psf_size: int, mode: str = 'median') -> PatchCollectionABC
 
-      Construct a new PatchCollection where patches lying inside a new grid are averaged together
+      Construct a new PatchCollection where patches
+      lying inside a new grid are averaged together
 
       :param corners: an Nx2 `np.ndarray` of the lower left corners of the new patch grid
       :type corners: np.ndarray

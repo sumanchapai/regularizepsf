@@ -10,6 +10,7 @@ Module Contents
 .. py:class:: PointSpreadFunctionABC
 
    .. py:property:: parameters
+      :type: List
       :abstractmethod:
 
       Varying parameters of the model.
@@ -37,14 +38,16 @@ Module Contents
 
    Creates a PSF object
 
-   :param function: Python function representing the PSF, first two parameters must be x and y and must return an numpy array
+   :param function:
+                    Python function representing the PSF,
+                        first two parameters must be x and y and must return an numpy array
 
    .. py:property:: parameters
       :type: set[str]
 
       Varying parameters of the model.
 
-   .. py:method:: __call__(x, y, **kwargs) -> Real | np.ndarray
+   .. py:method:: __call__(x: Real | np.ndarray, y: Real | np.ndarray, **kwargs: Dict[str, Any]) -> Real | np.ndarray
 
       Evaluation of the point spread function
 
@@ -58,7 +61,7 @@ Module Contents
 
 
 
-.. py:function:: simple_psf(arg=None) -> SimplePSF
+.. py:function:: simple_psf(arg: Any = None) -> SimplePSF
 
 
 .. py:class:: VariedPSF(vary_function: Callable, base_psf: SimplePSF, validate_at_call: bool = True)
@@ -68,10 +71,11 @@ Module Contents
    Model for a PSF that varies over the field of view
 
    .. py:property:: parameters
+      :type: List
 
       Varying parameters of the model.
 
-   .. py:method:: __call__(x, y)
+   .. py:method:: __call__(x: Real | np.ndarray, y: Real | np.ndarray) -> Real | np.ndarray
 
       Evaluation of the point spread function
 
@@ -85,6 +89,6 @@ Module Contents
 
 
 
-.. py:function:: varied_psf(base_psf: SimplePSF = None)
+.. py:function:: varied_psf(base_psf: SimplePSF = None) -> VariedPSF
 
 

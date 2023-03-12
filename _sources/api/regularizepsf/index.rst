@@ -19,10 +19,75 @@ Submodules
 Package Contents
 ----------------
 
-.. py:function:: simple_psf(arg=None) -> SimplePSF
+.. py:class:: ArrayCorrector(evaluations: dict[Any, numpy.ndarray], target_evaluation: numpy.ndarray)
+
+   Bases: :py:obj:`CorrectorABC`
+
+   A PSF corrector that is evaluated as array patches
 
 
-.. py:function:: varied_psf(base_psf: SimplePSF = None)
+   Initialize an ArrayCorrector
+
+   :param evaluations:
+                       evaluated version of the PSF as they vary over the image,
+                           keys should be (x, y) of the lower left
+                           pixel of each patch. values should be the `np.ndarray`
+                           that corresponds to that patch
+   :type evaluations: dict
+   :param target_evaluation: evaluated version of the target PSF
+   :type target_evaluation: np.ndarray
+
+   .. py:method:: correct_image(image: numpy.ndarray, size: int = None, alpha: float = 0.5, epsilon: float = 0.05) -> numpy.ndarray
+
+      PSF correct an image according to the model
+
+      :param image: image to be corrected
+      :type image: 2D float np.ndarray
+      :param size: how big to make the patches when correcting an image,
+                   only used for FunctionalCorrector
+      :type size: int
+      :param alpha: controls the “hardness” of the transition from amplification
+                    to attenuation, see notes
+      :type alpha: float
+      :param epsilon: controls the maximum of the amplification, see notes
+      :type epsilon: float
+
+      :returns: a image that has been PSF corrected
+      :rtype: np.ndarray
+
+
+   .. py:method:: __getitem__(xy: Tuple[int, int]) -> numpy.ndarray
+
+
+   .. py:method:: save(path: str) -> None
+
+      Save the model to a file.
+
+      :param path: where to save the model, suggested extension is ".psf"
+      :type path: str or `pathlib.Path`
+
+      :rtype: None
+
+
+   .. py:method:: load(path: str) -> ArrayCorrector
+      :classmethod:
+
+      Loads a model from the path
+
+      :param path: where to load the model from, suggested extension is ".psf"
+      :type path: str or `pathlib.Path`
+
+
+   .. py:method:: simulate_observation(image: numpy.ndarray) -> numpy.ndarray
+
+      Simulates on a star field what an observation using this PSF looks like
+
+      :param image: image of point source stars to simluate PSF for
+      :type image: 2D float np.ndarray
+
+      :returns: an image with the PSF applied
+      :rtype: np.ndarray
+
 
 
 .. py:class:: FunctionalCorrector(psf: regularizepsf.psf.PointSpreadFunctionABC, target_model: SimplePSF | None)
@@ -30,7 +95,8 @@ Package Contents
    Bases: :py:obj:`CorrectorABC`
 
    A version of the PSF corrector that stores the model as a set of functions.
-   For the actual correction, the functions must first be evaluated to an ArrayCorrector.
+   For the actual correction, the functions must first
+   be evaluated to an ArrayCorrector.
 
    Initialize a FunctionalCorrector
 
@@ -42,7 +108,12 @@ Package Contents
    .. py:property:: is_variable
       :type: bool
 
-      returns: True if the PSF model is varied (changes across the field-of-view) and False otherwise
+      
+
+
+
+      returns: True if the PSF model is varied (changes across the field-of-view)
+                and False otherwise
       :rtype: bool
 
    .. py:method:: evaluate_to_array_form(x: numpy.ndarray, y: numpy.ndarray, size: int) -> ArrayCorrector
@@ -66,9 +137,11 @@ Package Contents
 
       :param image: image to be corrected
       :type image: 2D float np.ndarray
-      :param size: how big to make the patches when correcting an image, only used for FunctionalCorrector
+      :param size: how big to make the patches when correcting an image,
+                   only used for FunctionalCorrector
       :type size: int
-      :param alpha: controls the “hardness” of the transition from amplification to attenuation, see notes
+      :param alpha: controls the “hardness” of the transition from amplification
+                    to attenuation, see notes
       :type alpha: float
       :param epsilon: controls the maximum of the amplification, see notes
       :type epsilon: float
@@ -77,7 +150,7 @@ Package Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: save(path)
+   .. py:method:: save(path: str) -> None
 
       Save the model to a file.
 
@@ -87,7 +160,7 @@ Package Contents
       :rtype: None
 
 
-   .. py:method:: load(path)
+   .. py:method:: load(path: str) -> FunctionalCorrector
       :classmethod:
 
       Loads a model from the path
@@ -110,73 +183,6 @@ Package Contents
 
 
 
-.. py:class:: ArrayCorrector(evaluations: dict[Any, numpy.ndarray], target_evaluation: numpy.ndarray)
-
-   Bases: :py:obj:`CorrectorABC`
-
-   A PSF corrector that is evaluated as array patches
-
-
-   Initialize an ArrayCorrector
-
-   :param evaluations:
-                       evaluated version of the PSF as they vary over the image, keys should be (x, y) of the lower left
-                           pixel of each patch. values should be the `np.ndarray` that corresponds to that patch
-   :type evaluations: dict
-   :param target_evaluation: evaluated version of the target PSF
-   :type target_evaluation: np.ndarray
-
-   .. py:method:: correct_image(image: numpy.ndarray, size: int = None, alpha: float = 0.5, epsilon: float = 0.05) -> numpy.ndarray
-
-      PSF correct an image according to the model
-
-      :param image: image to be corrected
-      :type image: 2D float np.ndarray
-      :param size: how big to make the patches when correcting an image, only used for FunctionalCorrector
-      :type size: int
-      :param alpha: controls the “hardness” of the transition from amplification to attenuation, see notes
-      :type alpha: float
-      :param epsilon: controls the maximum of the amplification, see notes
-      :type epsilon: float
-
-      :returns: a image that has been PSF corrected
-      :rtype: np.ndarray
-
-
-   .. py:method:: __getitem__(xy) -> numpy.ndarray
-
-
-   .. py:method:: save(path)
-
-      Save the model to a file.
-
-      :param path: where to save the model, suggested extension is ".psf"
-      :type path: str or `pathlib.Path`
-
-      :rtype: None
-
-
-   .. py:method:: load(path)
-      :classmethod:
-
-      Loads a model from the path
-
-      :param path: where to load the model from, suggested extension is ".psf"
-      :type path: str or `pathlib.Path`
-
-
-   .. py:method:: simulate_observation(image: numpy.ndarray) -> numpy.ndarray
-
-      Simulates on a star field what an observation using this PSF looks like
-
-      :param image: image of point source stars to simluate PSF for
-      :type image: 2D float np.ndarray
-
-      :returns: an image with the PSF applied
-      :rtype: np.ndarray
-
-
-
 .. py:function:: calculate_covering(image_shape: tuple[int, int], size: int) -> numpy.ndarray
 
    Determines the grid of overlapping neighborhood patches.
@@ -186,7 +192,8 @@ Package Contents
    :param size: size of the square patches we want to create
    :type size: int
 
-   :returns: an array of shape Nx2 where return[:, 0] are the x coordinate and return[:, 1] are the y coordinates
+   :returns: an array of shape Nx2 where return[:, 0]
+             are the x coordinate and return[:, 1] are the y coordinates
    :rtype: np.ndarray
 
 
@@ -194,16 +201,20 @@ Package Contents
 
    Bases: :py:obj:`PatchCollectionABC`
 
-   A representation of a PatchCollection that operates on pixel coordinates from a set of images
+   A representation of a PatchCollection that operates
+   on pixel coordinates from a set of images
 
    .. py:method:: extract(images: list[numpy.ndarray], coordinates: list[CoordinateIdentifier], size: int) -> PatchCollectionABC
       :classmethod:
 
-      Construct a PatchCollection from a set of images using the specified coordinates and patch size
+      Construct a PatchCollection from a set of images
+      using the specified coordinates and patch size
 
       :param images: the images loaded
       :type images: list of np.ndarrays
-      :param coordinates: A list of coordinates for the lower left pixel of each patch, specified in each type of PatchCollection
+      :param coordinates:
+                          A list of coordinates for the lower left pixel of each patch,
+                              specified in each type of PatchCollection
       :type coordinates: list
       :param size: size of one side of the square patches extracted
       :type size: int
@@ -212,10 +223,11 @@ Package Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: find_stars_and_average(image_paths: list[str], psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice=0)
+   .. py:method:: find_stars_and_average(image_paths: list[str], psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
       :classmethod:
 
-      Loads a series of images, finds stars in each, and builds a CoordinatePatchCollection with averaged stars
+      Loads a series of images, finds stars in each,
+          and builds a CoordinatePatchCollection with averaged stars
 
       :param image_paths: location of FITS files to load
       :type image_paths: List[str]
@@ -223,13 +235,19 @@ Package Contents
       :type psf_size: int
       :param patch_size: square size that each PSF model applies to
       :type patch_size: int
-      :param interpolation_scale: if >1, the image are first scaled by this factor. This results in stars being aligned at a subpixel scale
+      :param interpolation_scale:
+                                  if >1, the image are first scaled by this factor.
+                                      This results in stars being aligned at a subpixel scale
       :type interpolation_scale: int
       :param average_mode: "median" or "mean" determines how patches are combined
       :type average_mode: str
-      :param star_threshold: SEP's threshold for finding stars. See `threshold` in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
+      :param star_threshold:
+                             SEP's threshold for finding stars. See `threshold`
+                                 in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
       :type star_threshold: int
-      :param hdu_choice: Which HDU from each image will be used, default of 0 is most common but could be 1 for compressed images
+      :param hdu_choice:
+                         Which HDU from each image will be used,
+                             default of 0 is most common but could be 1 for compressed images
       :type hdu_choice: int
 
       :returns: An averaged star model built from the provided images
@@ -237,12 +255,14 @@ Package Contents
 
       .. rubric:: Notes
 
-      Using an `interpolation_scale` other than 1 for large images can dramatically slow down the execution.
+      Using an `interpolation_scale` other than 1
+          for large images can dramatically slow down the execution.
 
 
    .. py:method:: average(corners: numpy.ndarray, patch_size: int, psf_size: int, mode: str = 'median') -> PatchCollectionABC
 
-      Construct a new PatchCollection where patches lying inside a new grid are averaged together
+      Construct a new PatchCollection where patches
+      lying inside a new grid are averaged together
 
       :param corners: an Nx2 `np.ndarray` of the lower left corners of the new patch grid
       :type corners: np.ndarray
@@ -274,5 +294,11 @@ Package Contents
       :returns: An array corrector that can be used to correct PSFs
       :rtype: ArrayCorrector
 
+
+
+.. py:function:: simple_psf(arg: Any = None) -> SimplePSF
+
+
+.. py:function:: varied_psf(base_psf: SimplePSF = None) -> VariedPSF
 
 
