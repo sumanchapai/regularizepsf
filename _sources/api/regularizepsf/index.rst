@@ -223,14 +223,16 @@ Package Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: find_stars_and_average(image_paths: list[str], psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
+   .. py:method:: find_stars_and_average(images: list[str] | np.ndarray | Generator, psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
       :classmethod:
 
       Loads a series of images, finds stars in each,
           and builds a CoordinatePatchCollection with averaged stars
 
-      :param image_paths: location of FITS files to load
-      :type image_paths: List[str]
+      :param images: The images to be processed. Can be a list of FITS filenames, a
+                     numpy array of shape (n_images, ny, nx), or a Generator that yields
+                     each data array in turn.
+      :type images: List[str] or np.ndarray or Generator
       :param psf_size: size of the PSF model to use
       :type psf_size: int
       :param patch_size: square size that each PSF model applies to
