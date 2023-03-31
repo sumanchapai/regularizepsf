@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -716,10 +716,9 @@ document.write(`
 <div class="viewcode-block" id="CoordinatePatchCollection.average"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.CoordinatePatchCollection.average">[docs]</a>    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corners</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>  <span class="c1"># noqa: ARG002, kept for consistency</span>
                 <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
         <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
-        <span class="n">pad_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_pad_shape</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
-            <span class="n">mean_stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">patch_size</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">))</span> 
+            <span class="n">mean_stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                           <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
             <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
@@ -730,8 +729,8 @@ document.write(`
         <span class="n">y_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">corners_y</span><span class="p">,</span> <span class="n">corners_y</span> <span class="o">+</span> <span class="n">patch_size</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="c1"># pad patch with zeros</span>
-            <span class="n">padded_patch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">patch</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">patch</span><span class="p">),</span> <span class="n">pad_shape</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
+            <span class="c1"># Normalize the patch</span>
+            <span class="n">patch</span> <span class="o">=</span> <span class="n">patch</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
 
             <span class="c1"># Determine which average region it belongs to</span>
             <span class="n">center_x</span> <span class="o">=</span> <span class="n">identifier</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span>
@@ -745,10 +744,10 @@ document.write(`
                 <span class="n">match_corner</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">corners</span><span class="p">[</span><span class="n">match_index</span><span class="p">])</span>
                 <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
                     <span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">([</span><span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">],</span> 
-                                                          <span class="n">padded_patch</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                                                          <span class="n">patch</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                     <span class="n">counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
-                    <span class="n">median_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">padded_patch</span><span class="p">)</span>
+                    <span class="n">median_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> 
@@ -758,8 +757,12 @@ document.write(`
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
                             <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">median_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">median_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> 
-                                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">patch_size</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">))</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                         <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">median_stack</span><span class="p">}</span>
+        <span class="c1"># Now that we have our combined patches, pad them as appropriate</span>
+        <span class="n">pad_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_pad_shape</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">averages</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span> <span class="n">pad_shape</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">CoordinatePatchCollection</span><span class="p">(</span><span class="n">averages</span><span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
@@ -815,9 +818,15 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -827,7 +836,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -850,7 +859,7 @@ By PUNCH Science Operations Center
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -859,8 +868,8 @@ By PUNCH Science Operations Center
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
