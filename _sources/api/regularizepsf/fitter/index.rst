@@ -168,7 +168,7 @@ Module Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: find_stars_and_average(images: list[str] | np.ndarray | Generator, psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
+   .. py:method:: find_stars_and_average(images: list[str] | np.ndarray | Generator, psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', percentile: float = 10, star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
       :classmethod:
 
       Loads a series of images, finds stars in each,
@@ -186,8 +186,12 @@ Module Contents
                                   if >1, the image are first scaled by this factor.
                                       This results in stars being aligned at a subpixel scale
       :type interpolation_scale: int
-      :param average_mode: "median" or "mean" determines how patches are combined
+      :param average_mode: "median", "percentile", or "mean": determines how patches are
+                           combined
       :type average_mode: str
+      :param percentile: If `average_mode` is `"percentile"`, use this percentile value
+                         (from 0 to 100)
+      :type percentile: float
       :param star_threshold:
                              SEP's threshold for finding stars. See `threshold`
                                  in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
@@ -206,7 +210,7 @@ Module Contents
           for large images can dramatically slow down the execution.
 
 
-   .. py:method:: average(corners: numpy.ndarray, patch_size: int, psf_size: int, mode: str = 'median') -> PatchCollectionABC
+   .. py:method:: average(corners: numpy.ndarray, patch_size: int, psf_size: int, mode: str = 'median', percentile: float = 10) -> PatchCollectionABC
 
       Construct a new PatchCollection where patches
       lying inside a new grid are averaged together

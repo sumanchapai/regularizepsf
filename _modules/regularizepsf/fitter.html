@@ -581,6 +581,7 @@ document.write(`
                                <span class="n">patch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                                <span class="n">interpolation_scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                                <span class="n">average_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
+                               <span class="n">percentile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
                                <span class="n">star_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">hdu_choice</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinatePatchCollection</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads a series of images, finds stars in each, </span>
 <span class="sd">            and builds a CoordinatePatchCollection with averaged stars</span>
@@ -599,7 +600,11 @@ document.write(`
 <span class="sd">            if &gt;1, the image are first scaled by this factor. </span>
 <span class="sd">                This results in stars being aligned at a subpixel scale</span>
 <span class="sd">        average_mode : str</span>
-<span class="sd">            &quot;median&quot; or &quot;mean&quot; determines how patches are combined</span>
+<span class="sd">            &quot;median&quot;, &quot;percentile&quot;, or &quot;mean&quot;: determines how patches are</span>
+<span class="sd">            combined</span>
+<span class="sd">        percentile : float</span>
+<span class="sd">            If `average_mode` is `&quot;percentile&quot;`, use this percentile value</span>
+<span class="sd">            (from 0 to 100)</span>
 <span class="sd">        star_threshold : int</span>
 <span class="sd">            SEP&#39;s threshold for finding stars. See `threshold`</span>
 <span class="sd">                in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</span>
@@ -696,7 +701,7 @@ document.write(`
                                       <span class="n">patch_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">)</span>
         <span class="n">averaged</span> <span class="o">=</span> <span class="n">this_collection</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">corners</span><span class="p">,</span> 
                                            <span class="n">patch_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">,</span> <span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">,</span>
-                                           <span class="n">mode</span><span class="o">=</span><span class="n">average_mode</span><span class="p">)</span>
+                                           <span class="n">mode</span><span class="o">=</span><span class="n">average_mode</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">percentile</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">interpolation_scale</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">coordinate</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">averaged</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -714,15 +719,20 @@ document.write(`
         <span class="k">return</span> <span class="n">output</span></div>
 
 <div class="viewcode-block" id="CoordinatePatchCollection.average"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.CoordinatePatchCollection.average">[docs]</a>    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corners</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>  <span class="c1"># noqa: ARG002, kept for consistency</span>
-                <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
-        <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+                <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">percentile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PatchCollectionABC</span><span class="p">:</span>
+        <span class="n">CoordinatePatchCollection</span><span class="o">.</span><span class="n">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">percentile</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
             <span class="n">mean_stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                           <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
-            <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
-            <span class="n">median_stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
+                          <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># n.b. If mode is &#39;median&#39;, we could set mode=&#39;percentile&#39;</span>
+            <span class="c1"># and percentile=50 to simplify parts of this function, but</span>
+            <span class="c1"># np.nanpercentile(x, 50) seems to be about half as fast as</span>
+            <span class="c1"># np.nanmedian(x), so let&#39;s keep a speedy special case for medians.</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
 
         <span class="n">corners_x</span><span class="p">,</span> <span class="n">corners_y</span> <span class="o">=</span> <span class="n">corners</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">corners</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">x_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">corners_x</span><span class="p">,</span> <span class="n">corners_x</span> <span class="o">+</span> <span class="n">patch_size</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -745,9 +755,9 @@ document.write(`
                 <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
                     <span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">([</span><span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">],</span> 
                                                           <span class="n">patch</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                    <span class="n">counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
-                    <span class="n">median_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+                    <span class="n">counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> 
@@ -755,10 +765,18 @@ document.write(`
                         <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">mean_stack</span><span class="p">}</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                            <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">median_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">median_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> 
+                            <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">corner</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span>
                                 <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
-                        <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">median_stack</span><span class="p">}</span>
+                        <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">stack</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;percentile&quot;</span><span class="p">:</span>
+            <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">corner</span><span class="p">],</span>
+                                             <span class="n">percentile</span><span class="p">,</span>
+                                             <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
+                        <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">stack</span><span class="p">}</span>
         <span class="c1"># Now that we have our combined patches, pad them as appropriate</span>
         <span class="n">pad_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_pad_shape</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -766,12 +784,14 @@ document.write(`
         <span class="k">return</span> <span class="n">CoordinatePatchCollection</span><span class="p">(</span><span class="n">averages</span><span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">percentile</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if the average_mode is a valid kind&quot;&quot;&quot;</span>
-        <span class="n">valid_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+        <span class="n">valid_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;percentile&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_modes</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Found a mode of </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2"> but it must be in the list </span><span class="si">{</span><span class="n">valid_modes</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;percentile&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">percentile</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`percentile` must be between 0 and 100, inclusive&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_calculate_pad_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="n">pad_amount</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
