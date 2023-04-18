@@ -719,7 +719,7 @@ document.write(`
             <span class="c1"># pad in case someone selects a region on the edge of the image</span>
             <span class="n">padding_shape</span> <span class="o">=</span> <span class="p">((</span><span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">,</span> <span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">),</span>
                              <span class="p">(</span><span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">,</span> <span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span><span class="p">))</span>
-            <span class="n">padded_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> 
+            <span class="n">padded_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">image_background_removed</span><span class="p">,</span>
                                   <span class="n">padding_shape</span><span class="p">,</span> 
                                   <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> 
                                   <span class="n">constant_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
