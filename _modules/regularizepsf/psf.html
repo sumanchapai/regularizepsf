@@ -391,7 +391,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="simple_psf"><a class="viewcode-back" href="../../api/regularizepsf/psf/index.html#regularizepsf.simple_psf">[docs]</a><span class="k">def</span> <span class="nf">simple_psf</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="n">Any</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplePSF</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SimplePSF</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;psf decorator must have no arguments.&quot;</span><span class="p">)</span></div>
@@ -466,7 +466,7 @@ document.write(`
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base_psf</span><span class="p">,</span> <span class="n">SimplePSF</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VariedPSF</span><span class="p">,</span> <span class="n">_varied_psf</span><span class="p">(</span><span class="n">base_psf</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">base_psf</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">base_psf</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;varied_psf decorator must be called&quot;</span>
                             <span class="s2">&quot;with an argument for the base_psf.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
