@@ -168,7 +168,7 @@ Module Contents
       :rtype: np.ndarray
 
 
-   .. py:method:: find_stars_and_average(images: list[str] | np.ndarray | Generator, psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', percentile: float = 10, star_threshold: int = 3, hdu_choice: int = 0) -> CoordinatePatchCollection
+   .. py:method:: find_stars_and_average(images: list[str] | np.ndarray | Generator, psf_size: int, patch_size: int, interpolation_scale: int = 1, average_mode: str = 'median', percentile: float = 10, star_threshold: int = 3, star_mask: Optional[list[str] | np.ndarray | Generator] = None, hdu_choice: int = 0) -> CoordinatePatchCollection
       :classmethod:
 
       Loads a series of images, finds stars in each,
@@ -196,6 +196,14 @@ Module Contents
                              SEP's threshold for finding stars. See `threshold`
                                  in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
       :type star_threshold: int
+      :param star_mask: Masks to apply during star-finding. Can be a list of FITS filenames, a
+                        numpy array of shape (n_images, ny, nx), or a Generator that yields
+                        each mask array in turn. Where the mask pixel is `True`, the
+                        corresponding data array pixel will not be selected as a star. See
+                        `mask` in
+                        https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract
+                        for more details.
+      :type star_mask: List[str] or np.ndarray or Generator
       :param hdu_choice:
                          Which HDU from each image will be used,
                              default of 0 is most common but could be 1 for compressed images

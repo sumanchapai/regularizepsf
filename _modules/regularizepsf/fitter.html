@@ -316,7 +316,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Real</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">deepdish</span> <span class="k">as</span> <span class="nn">dd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -582,7 +582,9 @@ document.write(`
                                <span class="n">interpolation_scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                                <span class="n">average_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
                                <span class="n">percentile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-                               <span class="n">star_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">hdu_choice</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinatePatchCollection</span><span class="p">:</span>
+                               <span class="n">star_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                               <span class="n">star_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">Generator</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="n">hdu_choice</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinatePatchCollection</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads a series of images, finds stars in each, </span>
 <span class="sd">            and builds a CoordinatePatchCollection with averaged stars</span>
 
@@ -608,6 +610,14 @@ document.write(`
 <span class="sd">        star_threshold : int</span>
 <span class="sd">            SEP&#39;s threshold for finding stars. See `threshold`</span>
 <span class="sd">                in https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</span>
+<span class="sd">        star_mask : List[str] or np.ndarray or Generator</span>
+<span class="sd">            Masks to apply during star-finding. Can be a list of FITS filenames, a</span>
+<span class="sd">            numpy array of shape (n_images, ny, nx), or a Generator that yields</span>
+<span class="sd">            each mask array in turn. Where the mask pixel is `True`, the</span>
+<span class="sd">            corresponding data array pixel will not be selected as a star. See</span>
+<span class="sd">            `mask` in</span>
+<span class="sd">            https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</span>
+<span class="sd">            for more details.</span>
 <span class="sd">        hdu_choice : int</span>
 <span class="sd">            Which HDU from each image will be used, </span>
 <span class="sd">                default of 0 is most common but could be 1 for compressed images</span>
@@ -623,13 +633,13 @@ document.write(`
 <span class="sd">            for large images can dramatically slow down the execution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">Generator</span><span class="p">):</span>
-            <span class="n">iterator</span> <span class="o">=</span> <span class="n">images</span>
+            <span class="n">data_iterator</span> <span class="o">=</span> <span class="n">images</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                 <span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
                     <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
                         <span class="k">yield</span> <span class="n">image</span>
-                <span class="n">iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
+                <span class="n">data_iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image data array must be 3D&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">List</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -637,9 +647,33 @@ document.write(`
                 <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
                     <span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdul</span><span class="p">:</span>
                         <span class="k">yield</span> <span class="n">hdul</span><span class="p">[</span><span class="n">hdu_choice</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-            <span class="n">iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
+            <span class="n">data_iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported type for `images`&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">star_mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="kc">None</span>
+            <span class="n">star_mask_iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">star_mask</span><span class="p">,</span> <span class="n">Generator</span><span class="p">):</span>
+            <span class="n">star_mask_iterator</span> <span class="o">=</span> <span class="n">star_mask</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">star_mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">star_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">star_mask</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">mask</span>
+                <span class="n">star_mask_iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Star mask array must be 3D&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">star_mask</span><span class="p">,</span> <span class="n">List</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">star_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">mask_path</span> <span class="ow">in</span> <span class="n">star_mask</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">mask_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdul</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">hdul</span><span class="p">[</span><span class="n">hdu_choice</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+            <span class="n">star_mask_iterator</span> <span class="o">=</span> <span class="n">generator</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported type for `star_mask`&quot;</span><span class="p">)</span>
 
         <span class="c1"># the output collection to return</span>
         <span class="n">this_collection</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">({})</span>
@@ -649,7 +683,7 @@ document.write(`
         <span class="n">image_shape</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># for each image do the magic</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">star_mask</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data_iterator</span><span class="p">,</span> <span class="n">star_mask_iterator</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">image_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">image_shape</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
             <span class="k">elif</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">image_shape</span><span class="p">:</span>
@@ -674,7 +708,8 @@ document.write(`
             <span class="n">image_background_removed</span> <span class="o">=</span> <span class="n">image</span> <span class="o">-</span> <span class="n">background</span>
             <span class="n">image_star_coords</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">image_background_removed</span><span class="p">,</span> 
                                             <span class="n">star_threshold</span><span class="p">,</span> 
-                                            <span class="n">err</span><span class="o">=</span><span class="n">background</span><span class="o">.</span><span class="n">globalrms</span><span class="p">)</span>
+                                            <span class="n">err</span><span class="o">=</span><span class="n">background</span><span class="o">.</span><span class="n">globalrms</span><span class="p">,</span>
+                                            <span class="n">mask</span><span class="o">=</span><span class="n">star_mask</span><span class="p">)</span>
 
             <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="n">i</span><span class="p">,</span>
                                                 <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">psf_size</span> <span class="o">*</span> <span class="n">interpolation_scale</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)),</span>
