@@ -150,15 +150,18 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plots.html">Plotting Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional.html">Correct using <code class="docutils literal notranslate"><span class="pre">FunctionalCorrector</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory.html">Mathematical Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cite.html">How to cite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../api/regularizepsf/index.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api/regularizepsf/corrector/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.corrector</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/regularizepsf/exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.exceptions</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/regularizepsf/fitter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.fitter</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/regularizepsf/psf/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.psf</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/regularizepsf/visualize/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.visualize</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -333,8 +336,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="PatchCollectionABC"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC">[docs]</a><span class="k">class</span> <span class="nc">PatchCollectionABC</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patches</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patches</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">counts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patches</span> <span class="o">=</span> <span class="n">patches</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span>
         <span class="k">if</span> <span class="n">patches</span><span class="p">:</span>
             <span class="n">shape</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">shape</span>
             <span class="c1"># TODO: check that the patches are square</span>
@@ -407,7 +411,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">identifier</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">patches</span></div>
 
-<div class="viewcode-block" id="PatchCollectionABC.add"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">patch</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="PatchCollectionABC.add"><a class="viewcode-back" href="../../api/regularizepsf/fitter/index.html#regularizepsf.fitter.PatchCollectionABC.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+            <span class="n">patch</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new patch to the collection</span>
 
 <span class="sd">        Parameters</span>
@@ -415,9 +422,10 @@ document.write(`
 <span class="sd">        identifier : Any</span>
 <span class="sd">            identifier for a given patch, </span>
 <span class="sd">                specifically implemented for each PatchCollection</span>
-
 <span class="sd">        patch : np.ndarray</span>
 <span class="sd">            the data for a specific patch</span>
+<span class="sd">        count : int</span>
+<span class="sd">            Optionally, a corresponding item to add to the `counts` dictionary</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -428,6 +436,9 @@ document.write(`
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2"> is being overwritten in this collection.&quot;</span><span class="p">,</span>
                            <span class="ne">Warning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patches</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="n">patch</span>
+
+        <span class="k">if</span> <span class="n">count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
@@ -745,11 +756,14 @@ document.write(`
 
             <span class="n">averaged</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">psf_size</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="n">CoordinatePatchCollection</span><span class="p">({})</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">CoordinatePatchCollection</span><span class="p">({},</span> <span class="n">counts</span><span class="o">=</span><span class="p">{})</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averaged</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">output</span><span class="o">.</span><span class="n">patches</span><span class="p">[</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">image_index</span><span class="p">,</span>
-                                                <span class="n">key</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="n">interpolation_scale</span><span class="p">,</span>
-                                                <span class="n">key</span><span class="o">.</span><span class="n">y</span> <span class="o">//</span> <span class="n">interpolation_scale</span><span class="p">)]</span> <span class="o">=</span> <span class="n">patch</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">averaged</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">image_index</span><span class="p">,</span>
+                                            <span class="n">key</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="n">interpolation_scale</span><span class="p">,</span>
+                                            <span class="n">key</span><span class="o">.</span><span class="n">y</span> <span class="o">//</span> <span class="n">interpolation_scale</span><span class="p">),</span>
+                       <span class="n">patch</span><span class="p">,</span>
+                       <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">output</span></div>
 
@@ -760,7 +774,7 @@ document.write(`
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
             <span class="n">mean_stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                           <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
-            <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
+            <span class="n">mean_counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                           <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># n.b. If mode is &#39;median&#39;, we could set mode=&#39;percentile&#39;</span>
@@ -768,6 +782,7 @@ document.write(`
             <span class="c1"># np.nanpercentile(x, 50) seems to be about half as fast as</span>
             <span class="c1"># np.nanmedian(x), so let&#39;s keep a speedy special case for medians.</span>
             <span class="n">stack</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">corner</span><span class="p">):</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">}</span>
 
         <span class="n">corners_x</span><span class="p">,</span> <span class="n">corners_y</span> <span class="o">=</span> <span class="n">corners</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">corners</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">x_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">corners_x</span><span class="p">,</span> <span class="n">corners_x</span> <span class="o">+</span> <span class="n">patch_size</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -790,13 +805,14 @@ document.write(`
                 <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
                     <span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">([</span><span class="n">mean_stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">],</span> 
                                                           <span class="n">patch</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                    <span class="n">counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+                    <span class="n">mean_counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">stack</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+                <span class="n">counts</span><span class="p">[</span><span class="n">match_corner</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> 
-                        <span class="n">mean_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">]</span><span class="o">/</span><span class="n">counts</span><span class="p">[</span><span class="n">corner</span><span class="p">]</span>
+                        <span class="n">mean_stack</span><span class="p">[</span><span class="n">corner</span><span class="p">]</span> <span class="o">/</span> <span class="n">mean_counts</span><span class="p">[</span><span class="n">corner</span><span class="p">]</span>
                         <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">mean_stack</span><span class="p">}</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
             <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -812,11 +828,13 @@ document.write(`
                                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span>
                                 <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">psf_size</span><span class="p">,</span> <span class="n">psf_size</span><span class="p">))</span>
                         <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">stack</span><span class="p">}</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">CoordinateIdentifier</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">corner</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="n">count</span>
+                  <span class="k">for</span> <span class="n">corner</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
         <span class="c1"># Now that we have our combined patches, pad them as appropriate</span>
         <span class="n">pad_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_pad_shape</span><span class="p">(</span><span class="n">patch_size</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">averages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">averages</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span> <span class="n">pad_shape</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">CoordinatePatchCollection</span><span class="p">(</span><span class="n">averages</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">CoordinatePatchCollection</span><span class="p">(</span><span class="n">averages</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="n">counts</span><span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_validate_average_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">percentile</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

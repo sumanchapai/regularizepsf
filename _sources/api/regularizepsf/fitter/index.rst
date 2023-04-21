@@ -7,7 +7,7 @@
 Module Contents
 ---------------
 
-.. py:class:: PatchCollectionABC(patches: dict[Any, numpy.ndarray])
+.. py:class:: PatchCollectionABC(patches: dict[Any, numpy.ndarray], counts: Optional[dict[Any, int]] = None)
 
    .. py:method:: __len__() -> int
 
@@ -60,7 +60,7 @@ Module Contents
       :rtype: bool
 
 
-   .. py:method:: add(identifier: Any, patch: numpy.ndarray) -> None
+   .. py:method:: add(identifier: Any, patch: numpy.ndarray, count: Optional[int] = None) -> None
 
       Add a new patch to the collection
 
@@ -70,6 +70,8 @@ Module Contents
       :type identifier: Any
       :param patch: the data for a specific patch
       :type patch: np.ndarray
+      :param count: Optionally, a corresponding item to add to the `counts` dictionary
+      :type count: int
 
       :rtype: None
 
@@ -142,7 +144,7 @@ Module Contents
 
    
 
-.. py:class:: CoordinatePatchCollection(patches: dict[Any, numpy.ndarray])
+.. py:class:: CoordinatePatchCollection(patches: dict[Any, numpy.ndarray], counts: Optional[dict[Any, int]] = None)
 
    Bases: :py:obj:`PatchCollectionABC`
 

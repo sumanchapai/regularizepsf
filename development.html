@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome &#8212; regularizePSF</title>
+    <title>Development &#8212; regularizePSF</title>
   
   
   
@@ -62,10 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Quickstart" href="quickstart.html" />
+    <link rel="next" title="regularizepsf" href="api/regularizepsf/index.html" />
+    <link rel="prev" title="Getting help" href="help.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -131,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -144,20 +145,20 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Welcome
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plots.html">Plotting Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional.html">Correct using <code class="docutils literal notranslate"><span class="pre">FunctionalCorrector</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html">Mathematical Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cite.html">How to cite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="help.html">Getting help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api/regularizepsf/index.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/regularizepsf/corrector/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.corrector</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/regularizepsf/exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf.exceptions</span></code></a></li>
@@ -237,7 +238,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/punch-mission/regularizepsf/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/punch-mission/regularizepsf/issues/new?title=Issue%20on%20page%20%2Fdevelopment.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -267,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/development.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -336,7 +337,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -347,11 +350,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome</h1>
+    <h1>Development</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-docs">Building the docs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">Running tests</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -361,19 +373,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome">
-<h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this heading">#</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">regularizepsf</span></code> is a Python package (with Cython speed improvements) for determining and correcting
-point spread functions in astronomical images.
-It was originally developed for the <a class="reference external" href="https://punch.space.swri.edu/">PUNCH</a> mission and is documented in a forthcoming
-Astrophysical Journal paper (see <a class="reference external" href="https://arxiv.org/abs/2212.02594">arXiv version</a> until publication).</p>
-<p>Below is an example of correcting model data using the package.
-An initial image of a simplified starfield (a) is synthetically observed with a slowly varying PSF (b),
-then regularized with this technique (c). The final image visually matches a direct convolution of the initial image
-with the target PSF (d). The panels are gamma-corrected to highlight the periphery of the model PSFs.</p>
-<a class="reference internal image-reference" href="_images/model.png"><img alt="example of correction" class="align-center" src="_images/model.png" style="width: 800px;" /></a>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this heading">#</a></h1>
+<section id="building-the-docs">
+<h2>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this heading">#</a></h2>
+<p>The docs are built using <code class="docutils literal notranslate"><span class="pre">jupyter-book</span></code>. With that package installed, open a terminal in the repository base directory and run <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">docs</span></code>.</p>
+</section>
+<section id="running-tests">
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this heading">#</a></h2>
+<p>To run the tests for this package, run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> in the repository base directory.</p>
+<p>This repository includes tests for the plotting utilities which compare generated plots to reference images saved in <code class="docutils literal notranslate"><span class="pre">tests/baseline</span></code>. To include these image-comparison tests, run <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--mpl</span></code>. To update these reference images, run <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--mpl</span> <span class="pre">--mpl-generate-path=tests/baseline</span></code>.</p>
+<p>If the image-comparison tests are failing, run <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--mpl</span> <span class="pre">--mpl-generate-summary=html</span></code> to generate a summary page showing the generated and reference images. The location of the generated file will be shown at the end of <code class="docutils literal notranslate"><span class="pre">pytest</span></code>’s command-line output.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -407,12 +418,21 @@ with the target PSF (d). The panels are gamma-corrected to highlight the periphe
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="help.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting help</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="quickstart.html"
+       href="api/regularizepsf/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Quickstart</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">regularizepsf</span></code></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -425,6 +445,21 @@ with the target PSF (d). The panels are gamma-corrected to highlight the periphe
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-docs">Building the docs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">Running tests</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
