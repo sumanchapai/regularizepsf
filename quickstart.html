@@ -460,18 +460,45 @@ patch size.</p>
 It takes a list of images, the <code class="docutils literal notranslate"><span class="pre">psf_size</span></code>, and the <code class="docutils literal notranslate"><span class="pre">patch_size</span></code>. The function’s signature is:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average">
-<span class="sig-name descname"><span class="pre">find_stars_and_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'median'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdu_choice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average" title="Permalink to this definition">#</a></dt>
-<dd><p>Loads a series of images, finds stars in each, and builds a CoordinatePatchCollection with averaged stars</p>
+<span class="sig-name descname"><span class="pre">find_stars_and_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">np.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Generator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'median'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">np.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Generator</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdu_choice</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="api/regularizepsf/fitter/index.html#regularizepsf.fitter.CoordinatePatchCollection" title="regularizepsf.fitter.CoordinatePatchCollection"><span class="pre">CoordinatePatchCollection</span></a></span></span><a class="headerlink" href="#regularizepsf.fitter.CoordinatePatchCollection.find_stars_and_average" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Loads a series of images, finds stars in each,</dt><dd><p>and builds a CoordinatePatchCollection with averaged stars</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>image_paths</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – location of FITS files to load</p></li>
+<li><p><strong>images</strong> (<em>List</em><em>[</em><em>str</em><em>] or </em><em>np.ndarray</em><em> or </em><em>Generator</em>) – The images to be processed. Can be a list of FITS filenames, a
+numpy array of shape (n_images, ny, nx), or a Generator that yields
+each data array in turn.</p></li>
 <li><p><strong>psf_size</strong> (<em>int</em>) – size of the PSF model to use</p></li>
 <li><p><strong>patch_size</strong> (<em>int</em>) – square size that each PSF model applies to</p></li>
-<li><p><strong>interpolation_scale</strong> (<em>int</em>) – if &gt;1, the image are first scaled by this factor. This results in stars being aligned at a subpixel scale</p></li>
-<li><p><strong>average_mode</strong> (<em>str</em>) – “median” or “mean” determines how patches are combined</p></li>
-<li><p><strong>star_threshold</strong> (<em>int</em>) – SEP’s threshold for finding stars. See <cite>threshold</cite> in <a class="reference external" href="https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract">https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</a></p></li>
-<li><p><strong>hdu_choice</strong> (<em>int</em>) – Which HDU from each image will be used, default of 0 is most common but could be 1 for compressed images</p></li>
+<li><p><strong>interpolation_scale</strong> (<em>int</em>) – <dl class="simple">
+<dt>if &gt;1, the image are first scaled by this factor.</dt><dd><p>This results in stars being aligned at a subpixel scale</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>average_mode</strong> (<em>str</em>) – “median”, “percentile”, or “mean”: determines how patches are
+combined</p></li>
+<li><p><strong>percentile</strong> (<em>float</em>) – If <cite>average_mode</cite> is <cite>“percentile”</cite>, use this percentile value
+(from 0 to 100)</p></li>
+<li><p><strong>star_threshold</strong> (<em>int</em>) – <dl class="simple">
+<dt>SEP’s threshold for finding stars. See <cite>threshold</cite></dt><dd><p>in <a class="reference external" href="https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract">https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</a></p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>star_mask</strong> (<em>List</em><em>[</em><em>str</em><em>] or </em><em>np.ndarray</em><em> or </em><em>Generator</em>) – Masks to apply during star-finding. Can be a list of FITS filenames, a
+numpy array of shape (n_images, ny, nx), or a Generator that yields
+each mask array in turn. Where the mask pixel is <cite>True</cite>, the
+corresponding data array pixel will not be selected as a star. See
+<cite>mask</cite> in
+<a class="reference external" href="https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract">https://sep.readthedocs.io/en/v1.1.x/api/sep.extract.html#sep-extract</a>
+for more details.</p></li>
+<li><p><strong>hdu_choice</strong> (<em>int</em>) – <dl class="simple">
+<dt>Which HDU from each image will be used,</dt><dd><p>default of 0 is most common but could be 1 for compressed images</p>
+</dd>
+</dl>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -482,7 +509,10 @@ It takes a list of images, the <code class="docutils literal notranslate"><span 
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Using an <cite>interpolation_scale</cite> other than 1 for large images can dramatically slow down the execution.</p>
+<dl class="simple">
+<dt>Using an <cite>interpolation_scale</cite> other than 1</dt><dd><p>for large images can dramatically slow down the execution.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p>We convert from a <code class="docutils literal notranslate"><span class="pre">CoordinatePatchCollection</span></code> object
@@ -522,8 +552,10 @@ images are stored big-endian.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>image</strong> (<em>2D float np.ndarray</em>) – image to be corrected</p></li>
-<li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image, only used for FunctionalCorrector</p></li>
-<li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification to attenuation, see notes</p></li>
+<li><p><strong>size</strong> (<em>int</em>) – how big to make the patches when correcting an image,
+only used for FunctionalCorrector</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – controls the “hardness” of the transition from amplification
+to attenuation, see notes</p></li>
 <li><p><strong>epsilon</strong> (<em>float</em>) – controls the maximum of the amplification, see notes</p></li>
 </ul>
 </dd>
